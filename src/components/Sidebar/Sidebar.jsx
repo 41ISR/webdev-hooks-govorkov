@@ -56,7 +56,7 @@ const Sidebar = ({ setPage, page }) => {
                     <span className="nav-label">Activity</span>
                 </button>
                 <button onClick={() => setPage("settings")} className={`nav-link${page === "settings" ? " active" : ""}`}
-                    data-page="settings">
+                    data-page="setting">
                     <span className="nav-icon">
                         <svg
                             viewBox="0 0 24 24"

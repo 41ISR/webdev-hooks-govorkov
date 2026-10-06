@@ -1,10 +1,26 @@
 import Button from '../../components/Button'
-import Switch from '../../components/Button'
+import Switch from '../../components/Switch'
 import Input from '../../components/Input'
 import TaskRow from '../../components/TaskRow'
+import { useState } from 'react'
+import { nanoid } from 'nanoid'
 
 
 const PageBoard = () => {
+    const [taskName, setTaskName] = useState('')
+    const [tasks, setTasks] = useState([])
+    const handleSubmit = (e) => {
+        e.preventDefault()
+
+        const newTask = {
+            name: taskName,
+            done: false,
+            counter: 0,
+            id: nanoid(),
+        }
+        setTasks(o => [...o, newTask])
+    }
+
     return (
         <section className="page active" id="page-board">
             <div className="page-header">
@@ -36,9 +52,10 @@ const PageBoard = () => {
             </div>
 
             <div className="board-toolbar">
-                <div className="mount-wrap" data-hook="1.2 useState (toggle)">
+                <div className="mount-wrap" data-hook="1.2 
+                useState (toggle)">
                     <Switch />
-                    
+
                 </div>
             </div>
 
@@ -46,12 +63,18 @@ const PageBoard = () => {
                 className="mount-wrap"
                 data-hook="1.6 array · 1.1 counter · 1.5 functional update">
                 <div className="mount-point" id="mount-tasklist">
-                    <div className="add-task-row">
-                        <Input />
+                    <form onSubmit={handleSubmit} className="add-task-row">
+                        <Input
+                            placeholder="Add a task and press Enter..."
+                            value={taskName}
+                            onChange={(e) => setTaskName(e.target.value)}
+                        />
                         <Button>Add</Button>
-                    </div>
+                    </form>
                     <div className="task-list">
-                        <TaskRow />
+                        {tasks.map((el) => (
+                            <TaskRow key={el.id} {...el} />
+                        ))}
                     </div>
                 </div>
             </div>

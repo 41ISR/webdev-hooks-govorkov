@@ -1,8 +1,8 @@
-const Input = () => {
+const Input = ({className, ...rest}) => {
     return (
         <input
-            className="input grow"
-            placeholder="Add a task and press Enter..."
+            className={`input grow${" " + className}`}
+            {...rest}
         />
     )
 }
