@@ -1,15 +1,17 @@
 import "./Sidebar.css"
 
-const Sidebar = () => {
+const Sidebar = ({ setPage, page }) => {
     return (
         <aside className="sidebar">
             <div className="brand">
-                <div className="brand-mark">R</div>
-                <div className="brand-name">Relay</div>
+                <div className="brand-mark">Я</div>
+                <div className="brand-name">Яelay</div>
             </div>
 
             <nav className="nav">
-                <button className="nav-link active" data-page="board">
+                <button onClick={() => setPage("board")}
+                    className={`nav-link${page === "board" ? " active" : ""}`}
+                    data-page="board">
                     <span className="nav-icon">
                         <svg
                             viewBox="0 0 24 24"
@@ -22,7 +24,9 @@ const Sidebar = () => {
                     </span>
                     <span className="nav-label">Board</span>
                 </button>
-                <button className="nav-link" data-page="people">
+                <button onClick={() => setPage("people")}
+                    className={`nav-link${page === "people" ? " active" : ""}`}
+                    data-page="people">
                     <span className="nav-icon">
                         <svg
                             viewBox="0 0 24 24"
@@ -37,7 +41,9 @@ const Sidebar = () => {
                     </span>
                     <span className="nav-label">People</span>
                 </button>
-                <button className="nav-link" data-page="activity">
+                <button onClick={() => setPage("activity")}
+                    className={`nav-link${page === "activity" ? " active" : ""}`}
+                    data-page="activity">
                     <span className="nav-icon">
                         <svg
                             viewBox="0 0 24 24"
@@ -49,7 +55,8 @@ const Sidebar = () => {
                     </span>
                     <span className="nav-label">Activity</span>
                 </button>
-                <button className="nav-link" data-page="settings">
+                <button onClick={() => setPage("settings")} className={`nav-link${page === "settings" ? " active" : ""}`}
+                    data-page="settings">
                     <span className="nav-icon">
                         <svg
                             viewBox="0 0 24 24"
@@ -70,7 +77,7 @@ const Sidebar = () => {
                 <span className="status-dot online"></span>
                 <span>You're online</span>
             </div>
-        </aside>
+        </aside >
     )
 }
 
